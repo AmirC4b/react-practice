@@ -1,7 +1,7 @@
 import '../assets/header-styles.css'
 
 
-export default function Header(cartCount){
+export default function Header({ cartCount }){
     return (
     <div className='top-header'>
         <div className='header-container'>

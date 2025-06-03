@@ -3,15 +3,16 @@ import '../assets/product-styles.css'
 
 
 
-export default function Products({ title, price, image }) {
+export default function Products({ title, price, image,  onAddToCart}) {
     const [quantity, setQuantity] = useState(1);
 
     const increment = () => setQuantity(prev => prev + 1);
     const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
     const addToCart = () => {
-        alert(`${quantity} عدد از "${title}" به سبد خرید اضافه شد!`);
-    };
+    onAddToCart(quantity);
+    setQuantity(1);     
+  };
 
     return (
         <div className="product-card">
