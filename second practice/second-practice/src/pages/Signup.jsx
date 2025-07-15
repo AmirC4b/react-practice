@@ -11,13 +11,14 @@ export default function Signup(){
 
     const postData = async (e) => {
         e.preventDefault();
-
+        
         try{
            const response = await axios.post('https://nowruzi.top/api/User/Register', {
             mobile: mobile,
             password: password,
             firstName: firstName,
             lastName: lastName
+            
         });
             console.log("ثبت نام با موفقیت انجام شد",response.data);
              alert("ثبت‌نام با موفقیت انجام شد ✅");
@@ -27,13 +28,18 @@ export default function Signup(){
             setFirstName("");
             setLastName("");
 
+            const userId = response.data?.data?.id;
+            if (userId) {
+                localStorage.setItem("userId", userId);
+            }
+
 
         } catch(error){
             console.error("خطا در ثبت‌نام:", error);
             alert("ثبت‌نام با خطا مواجه شد ❌");
         }
     } 
-
+    
     return (
         <div className="Form">
             <h2 className="title">Sign Up</h2>
