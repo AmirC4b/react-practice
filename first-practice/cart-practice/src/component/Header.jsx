@@ -17,7 +17,7 @@ export default function Header({ cartCount }){
                 <h1>SHOP</h1>
             </div>
             <div className='cart'>
-                <img src="/cart.png" alt="" className='cart-img' />
+                <img src="/../img/cart.png" alt="" className='cart-img' />
                 <span className='cart-count'>{cartCount}</span>
             </div>
         </div>
