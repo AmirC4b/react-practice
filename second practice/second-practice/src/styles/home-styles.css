@@ -102,3 +102,9 @@
 .add-to-cart-btn:hover {
     background-color: #218838;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+
+}

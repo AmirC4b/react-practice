@@ -4,15 +4,28 @@ import "../styles/home-styles.css"
 
 export default function Home(){
     const [products, setproducts] = useState([]);
+    const [isloading, setIsLoading] = useState(true);
 
     const getProduct = async () => {
-        const response = await axios.get("https://nowruzi.top/api/Product");
-        setproducts(response.data.data.products);
+        try {
+            const response = await axios.get("https://nowruzi.top/api/Product");
+            setproducts(response.data.data.products);
+            setIsLoading(false);
+        } catch(e) {
+          console.log(e);
+        }   
     }
+
     useEffect(() => {
         getProduct();
     },[])
     
+    if(isloading){
+      return(
+      <h2 className="loading">Loading...</h2>
+      )
+    }
+
     return (
         <div className="products">
   <h2>Shop</h2>
