@@ -1,7 +1,7 @@
 import axios from "axios";
-import "../assets/styles/styles.css"
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
 
@@ -12,7 +12,8 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
-  const postData = async (data) => {
+  const navigate = useNavigate();
+  const postData = async (data : any) => {
 
 
     try {
@@ -26,15 +27,14 @@ export default function Signup() {
       console.log("ثبت نام با موفقیت انجام شد", response.data);
       toast("ثبت‌نام با موفقیت انجام شد ✅");
 
-      const userId = response.data?.data?.id;
-      if (userId) {
-        localStorage.setItem("userId", userId);
-      }
-
+      localStorage.setItem("userId", response.data.data.id);
+      localStorage.setItem("FullName", response.data.data.fullName); 
+      navigate("/login");
       reset();
+      
     } catch (error) {
       console.error("خطا در ثبت‌نام:", error);
-      toast("ثبت‌نام با خطا مواجه شد ❌");
+      toast(error.response.data.message);
     }
   };
 
@@ -57,7 +57,7 @@ export default function Signup() {
         <label className="mb-1 font-medium text-gray-700">Mobile</label>
         <input
           type="text"
-          {...register("mobile", { required: true })}
+          {...register("mobile", { required: true, minLength: 11 })}
           className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-[15px] focus:outline-none focus:border-blue-500 transition"
         />
         {errors.mobile && <p className="text-red-500 text-sm mb-2">شماره موبایل الزامی است</p>}

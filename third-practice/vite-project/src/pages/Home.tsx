@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../assets/styles/styles.css"
+
 
 export default function Home() {
   const [products, setproducts] = useState([]);

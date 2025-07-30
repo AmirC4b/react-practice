@@ -3,6 +3,7 @@ import "../assets/styles/styles.css"
 import cart from "../assets/icons/cart.png"
 
 export default function Header() {
+    const userFullName = localStorage.getItem("FullName");
     return (
         <div className="w-full h-[120px] bg-black text-white">
             <div className="flex justify-between items-center px-5 py-[50px]">
@@ -13,6 +14,8 @@ export default function Header() {
                                 Home
                             </Link>
                         </li>
+                        {userFullName == null ? 
+                        <>
                         <li>
                             <Link to="/sign-up" className="no-underline text-white">
                                 Sign-Up
@@ -23,6 +26,10 @@ export default function Header() {
                                 Login
                             </Link>
                         </li>
+                        </>    
+                   :
+                   <li className="text-green-400 font-bold">{userFullName}</li>
+                    }
                     </ul>
                 </nav>
                 <div className="text-xl font-bold">

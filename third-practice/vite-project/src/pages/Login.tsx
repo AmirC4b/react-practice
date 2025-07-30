@@ -1,7 +1,7 @@
 import axios from "axios";
-import "../assets/styles/styles.css"
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
@@ -12,9 +12,10 @@ export default function Login() {
           formState: { errors },
         } = useForm();
 
+    const navigate = useNavigate();
   
 
-  const handleLogin = async (data) => {
+  const handleLogin = async (data : any) => {
 
     try {
       const response = await axios.post("https://nowruzi.top/api/User/Login", {
@@ -25,15 +26,14 @@ export default function Login() {
       console.log("ورود با موفقیت انجام شد", response.data);
       toast("ثبت‌ نام با موفقیت انجام شد ✅");
 
-      const userId = response.data?.data?.id;
-      if (userId) {
-        localStorage.setItem("userId", userId);
-      }
 
+      localStorage.setItem("userId",response.data.data.id);
+      localStorage.setItem("FullName",response.data.data.fullName);
+      navigate("/");
       reset();
     } catch (error) {
       console.error("خطا در ورود:", error);
-      toast("ورود با خطا مواجه شد ❌");
+      toast(error.response.data.message);
     }
   };
 
@@ -56,7 +56,7 @@ export default function Login() {
         <label className="font-semibold mb-1">Mobile</label>
         <input
           type="text"
-          {...register("mobile", { required: true })}
+          {...register("mobile", { required: true, minLength: 11 })}
           className="p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         {errors.mobile && <p className="text-red-500 text-sm mb-2">شماره موبایل الزامی است</p>}
