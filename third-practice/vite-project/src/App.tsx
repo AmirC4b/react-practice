@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Header from "./components/Header";
+import NotFound from "./pages/NotFound"
 
 function App() {
  return (   
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/sign-up" element={<Signup />}/>
+      <Route path="*" element={<NotFound />}/>
     </Routes>
   </BrowserRouter>
   );

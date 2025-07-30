@@ -57,7 +57,7 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <button className="mt-3 w-full py-2 text-white text-base font-bold bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-300">
+              <button className="cursor-pointer mt-3 w-full py-2 text-white text-base font-bold bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-300">
                 افزودن به سبد خرید
               </button>
             </div>
