@@ -1,22 +1,25 @@
-import { useState } from "react";
 import axios from "axios";
 import "../assets/styles/styles.css"
+import { useForm } from 'react-hook-form';
 
 export default function Signup() {
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
 
-  const postData = async (e) => {
-    e.preventDefault();
+    const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const postData = async (data) => {
+
 
     try {
       const response = await axios.post("https://nowruzi.top/api/User/Register", {
-        mobile,
-        password,
-        firstName,
-        lastName,
+        mobile: data.mobile,
+        password: data.password,
+        firstName: data.firstName,
+        lastName: data.lastName,
       });
 
       console.log("ثبت نام با موفقیت انجام شد", response.data);
@@ -27,10 +30,7 @@ export default function Signup() {
         localStorage.setItem("userId", userId);
       }
 
-      setMobile("");
-      setPassword("");
-      setFirstName("");
-      setLastName("");
+      reset();
     } catch (error) {
       console.error("خطا در ثبت‌نام:", error);
       alert("ثبت‌نام با خطا مواجه شد ❌");
@@ -40,46 +40,44 @@ export default function Signup() {
   return (
     <div className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl shadow-lg font-sans">
       <h2 className="text-center text-3xl font-semibold mb-8 text-gray-800">Sign Up</h2>
-      <form onSubmit={postData} className="flex flex-col">
+      <form onSubmit={handleSubmit(postData)} className="flex flex-col">
         <label className="mb-1 font-medium text-gray-700">Mobile</label>
         <input
           type="text"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
+          {...register("mobile", { required: true })}
           className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-[15px] focus:outline-none focus:border-blue-500 transition"
-          required
         />
+        {errors.mobile && <p className="text-red-500 text-sm mb-2">شماره موبایل الزامی است</p>}
+
 
         <label className="mb-1 font-medium text-gray-700">Password</label>
-        <input
+       <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          {...register("password", { required: true })}
           className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-[15px] focus:outline-none focus:border-blue-500 transition"
-          required
         />
+        {errors.password && <p className="text-red-500 text-sm mb-2">رمز عبور الزامی است</p>}
 
         <label className="mb-1 font-medium text-gray-700">First Name</label>
         <input
           type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          {...register("firstName", { required: true })}
           className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-[15px] focus:outline-none focus:border-blue-500 transition"
-          required
         />
+        {errors.firstName && <p className="text-red-500 text-sm mb-2">نام الزامی است</p>}
 
+        
         <label className="mb-1 font-medium text-gray-700">Last Name</label>
-        <input
+         <input
           type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          {...register("lastName", { required: true })}
           className="w-full p-3 mb-6 border border-gray-300 rounded-lg text-[15px] focus:outline-none focus:border-blue-500 transition"
-          required
         />
+        {errors.lastName && <p className="text-red-500 text-sm mb-2">نام خانوادگی الزامی است</p>}
 
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-[16px] font-semibold rounded-lg transition duration-300"
+          className="cursor-pointer w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-[16px] font-semibold rounded-lg transition duration-300"
         >
           Sign Up
         </button>

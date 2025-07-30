@@ -48,11 +48,11 @@ export default function Home() {
               <div className="flex justify-between text-sm font-bold text-gray-800 mb-3">
                 <span className="text-green-700">${item.price}</span>
                 <div className="flex items-center gap-2">
-                  <button className="w-8 h-8 text-lg bg-gray-200 hover:bg-gray-300 rounded-md">
+                  <button className="cursor-pointer w-8 h-8 text-lg bg-gray-200 hover:bg-gray-300 rounded-md">
                     -
                   </button>
                   <span className="font-bold">{item.cartQuantity}</span>
-                  <button className="w-8 h-8 text-lg bg-gray-200 hover:bg-gray-300 rounded-md">
+                  <button className="cursor-pointer w-8 h-8 text-lg bg-gray-200 hover:bg-gray-300 rounded-md">
                     +
                   </button>
                 </div>
