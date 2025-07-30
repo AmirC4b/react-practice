@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../assets/styles/styles.css"
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
 
@@ -22,7 +23,7 @@ export default function Login() {
       });
 
       console.log("ورود با موفقیت انجام شد", response.data);
-      alert("ورود با موفقیت انجام شد ✅");
+      toast("ثبت‌ نام با موفقیت انجام شد ✅");
 
       const userId = response.data?.data?.id;
       if (userId) {
@@ -32,12 +33,24 @@ export default function Login() {
       reset();
     } catch (error) {
       console.error("خطا در ورود:", error);
-      alert("ورود با خطا مواجه شد ❌");
+      toast("ورود با خطا مواجه شد ❌");
     }
   };
 
   return (
     <div className="max-w-sm mx-auto p-8 bg-white rounded-lg shadow-md mt-10">
+        <ToastContainer 
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
       <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col">
         <label className="font-semibold mb-1">Mobile</label>
@@ -64,7 +77,9 @@ export default function Login() {
         >
           Login
         </button>
+        
       </form>
+      
     </div>
   );
 }

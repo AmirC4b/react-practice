@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../assets/styles/styles.css"
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Signup() {
 
@@ -23,7 +24,7 @@ export default function Signup() {
       });
 
       console.log("ثبت نام با موفقیت انجام شد", response.data);
-      alert("ثبت‌نام با موفقیت انجام شد ✅");
+      toast("ثبت‌نام با موفقیت انجام شد ✅");
 
       const userId = response.data?.data?.id;
       if (userId) {
@@ -33,12 +34,24 @@ export default function Signup() {
       reset();
     } catch (error) {
       console.error("خطا در ثبت‌نام:", error);
-      alert("ثبت‌نام با خطا مواجه شد ❌");
+      toast("ثبت‌نام با خطا مواجه شد ❌");
     }
   };
 
   return (
     <div className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl shadow-lg font-sans">
+      <ToastContainer 
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       <h2 className="text-center text-3xl font-semibold mb-8 text-gray-800">Sign Up</h2>
       <form onSubmit={handleSubmit(postData)} className="flex flex-col">
         <label className="mb-1 font-medium text-gray-700">Mobile</label>
