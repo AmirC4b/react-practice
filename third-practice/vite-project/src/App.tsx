@@ -4,6 +4,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Header from "./components/Header";
 import NotFound from "./pages/NotFound"
+import MyCart from "./pages/cart";
 
 export default function App(){
   return(
@@ -25,6 +26,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
+      <Route path="/cart" element={<MyCart />}/>
       <Route path="/sign-up" element={<Signup />}/>
       <Route path="*" element={<NotFound />}/>
     </Routes>
