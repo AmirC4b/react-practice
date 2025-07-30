@@ -1,0 +1,4 @@
+interface IProductModel {
+    id: number,
+    
+}
