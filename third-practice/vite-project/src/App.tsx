@@ -5,7 +5,7 @@ import Signup from "./pages/signup";
 import Header from "./components/Header";
 import NotFound from "./pages/NotFound";
 import MyCart from "./pages/cart";
-
+import ProductDetail from "./pages/Productdetail";
 
 export default function App() {
   return (
@@ -27,6 +27,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<MyCart />} />
         <Route path="/sign-up" element={<Signup />} />
+        <Route path="/product-details/:productId" element={<ProductDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

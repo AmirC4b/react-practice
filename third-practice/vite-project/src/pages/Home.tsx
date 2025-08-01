@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/productCard";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [products, setproducts] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const getProduct = async () => {
     try {

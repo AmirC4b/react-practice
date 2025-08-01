@@ -40,8 +40,8 @@ export default function Header() {
       <div className="flex justify-between items-center px-5 py-[50px]">
         <nav>
           <ul className="flex gap-2 list-none p-0 m-0">
-            <li>
-              <Link to="/" className="no-underline text-white">
+            <li className="cursor-pointer">
+              <Link to="/" className=" cursor-pointer no-underline text-white">
                 Home
               </Link>
             </li>
@@ -54,13 +54,19 @@ export default function Header() {
               </>
             ) : (
               <>
-                <li>
-                  <Link to="/sign-up" className="no-underline text-white">
+                <li className="cursor-pointer">
+                  <Link
+                    to="/sign-up"
+                    className=" cursor-pointer no-underline text-white"
+                  >
                     Sign-Up
                   </Link>
                 </li>
-                <li>
-                  <Link to="/login" className="no-underline text-white">
+                <li className="cursor-pointer">
+                  <Link
+                    to="/login"
+                    className=" cursor-pointer no-underline text-white"
+                  >
                     Login
                   </Link>
                 </li>

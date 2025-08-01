@@ -1,15 +1,15 @@
 import { useState } from "react";
 import useCartStore from "../hooks/CartStore";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ products }: any) {
+  const navigate = useNavigate();
   const addToTotal = useCartStore((state: any) => state.addToTotal);
   const addToCart = useCartStore((state: any) => state.addToCart);
   const addItemToCart = useCartStore((state: any) => state.addItemToCart);
   const fetchCart = useCartStore((state: any) => state.fetchCart);
   const [count, setCount] = useState(0);
-  
-
 
   function handleAddCount() {
     setCount(count + 1);
@@ -69,6 +69,12 @@ export default function ProductCard({ products }: any) {
           className="cursor-pointer mt-3 w-full py-2 text-white text-base font-bold bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-300"
         >
           افزودن به سبد خرید
+        </button>
+        <button
+          onClick={() => navigate(`/product-details/${products.id}`)}
+          className="cursor-pointer mt-2 w-full py-2 text-blue-600 text-base font-bold border border-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-300"
+        >
+          جزئیات محصول
         </button>
       </div>
     </div>
