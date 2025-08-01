@@ -8,6 +8,7 @@ export default function ProductCard({ products }: any) {
   const addItemToCart = useCartStore((state: any) => state.addItemToCart);
   const fetchCart = useCartStore((state: any) => state.fetchCart);
   const [count, setCount] = useState(0);
+  
 
 
   function handleAddCount() {

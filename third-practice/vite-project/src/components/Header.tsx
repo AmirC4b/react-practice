@@ -71,12 +71,12 @@ export default function Header() {
         <div className="text-xl font-bold">
           <h1>SHOP</h1>
         </div>
-        <div className="relative inline-block">
+        <Link to={"/cart"} className="relative inline-block">
           <img src={cart} alt="" className="w-10 h-auto" />
           <span className="absolute -top-1 -right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center font-bold">
             {totalCount}
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );
