@@ -1,4 +1,3 @@
 interface IProductModel {
-    id: number,
-    
+  id: number;
 }

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-const useCartStore = create((set) =>({
-     totalCount: 0,
+const useCartStore = create((set) => ({
+  totalCount: 0,
   cartItems: [],
 
   addToTotal: (amount: number) =>
