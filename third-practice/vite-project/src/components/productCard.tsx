@@ -1,10 +1,14 @@
 import { useState } from "react";
 import useCartStore from "../hooks/CartStore";
+import { toast } from "react-toastify";
 
 export default function ProductCard({ products }: any) {
   const addToTotal = useCartStore((state: any) => state.addToTotal);
+  const addToCart = useCartStore((state: any) => state.addToCart);
   const addItemToCart = useCartStore((state: any) => state.addItemToCart);
+  const fetchCart = useCartStore((state: any) => state.fetchCart);
   const [count, setCount] = useState(0);
+
 
   function handleAddCount() {
     setCount(count + 1);
@@ -15,11 +19,17 @@ export default function ProductCard({ products }: any) {
       setCount(count - 1);
     }
   }
-  function handleAddToCart() {
+  async function handleAddToCart() {
     if (count === 0) return;
-    addToTotal(count);
-    addItemToCart(products, count);
-    setCount(0);
+    if (localStorage.getItem("userId")) {
+      await addToCart(products.id);
+      addToTotal(count); // اختیاری؛ اگه نمی‌خوای دستی زیاد شه، حذف کن
+      addItemToCart(products, count);
+      await fetchCart(); // این خط مهمه
+      setCount(0);
+    } else {
+      toast.info("ابتدا وارد اکانت شید");
+    }
   }
 
   return (

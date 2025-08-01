@@ -35,18 +35,6 @@ export default function Login() {
 
   return (
     <div className="max-w-sm mx-auto p-8 bg-white rounded-lg shadow-md mt-10">
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
       <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
       <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col">
         <label className="font-semibold mb-1">Mobile</label>

@@ -9,6 +9,7 @@ export default function Header() {
   const totalCount = useCartStore((state: any) => state.totalCount);
   const [login, setIsLogin] = useState(false);
   const navigate = useNavigate();
+  const fetchCart = useCartStore((state: any) => state.fetchCart);
 
   useEffect(() => {
     const checkLoginStatus = () => {
@@ -17,6 +18,7 @@ export default function Header() {
       if (fullName && userId) {
         setIsLogin(true);
         setUserFullName(fullName);
+        fetchCart();
       } else {
         setIsLogin(false);
         setUserFullName("");

@@ -8,9 +8,12 @@ export default function Home() {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(
-        "https://nowruzi.top/api/Product/GetProducts"
-      );
+      const userId = localStorage.getItem("userId");
+      const url = userId
+        ? `https://nowruzi.top/api/Product/GetProducts?UserId=${userId}`
+        : "https://nowruzi.top/api/Product/GetProducts";
+
+      const response = await axios.get(url);
       setproducts(response.data.data.products);
       setIsLoading(false);
     } catch (e) {
@@ -33,8 +36,8 @@ export default function Home() {
   return (
     <div className="products px-4">
       <div className="grid mt-8 gap-5 grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
-        {products.map((Products: any) => (
-          <ProductCard products={Products} />
+        {products.map((products: any) => (
+          <ProductCard products={products} />
         ))}
       </div>
     </div>
